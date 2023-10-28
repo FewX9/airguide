@@ -1,11 +1,6 @@
 export default function TempBox({ children }) {
-  try {
-    children = JSON.parse(children);
-  } catch (e) {
-    children = { key1: 'Error parsing JSON' };
-  }
   return (
-    <div className="w-full max-w-screen-sm bg-white p-10 rounded-xl ring-8 ring-white ring-opacity-40">
+    <div className="w-full max-w-screen-sm bg-white p-10 rounded-xl ring-8 ring-white ring-opacity-40" data-aos="fade-right">
       <div className="flex justify-between">
         <div className="flex flex-col">
           <span className="text-6xl font-bold">29°C</span>
