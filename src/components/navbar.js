@@ -1,5 +1,30 @@
+import { Fragment, useState } from 'react'
+import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import {
+  ArrowPathIcon,
+  Bars3Icon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline'
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
+const products = [
+  { name: 'ตัวติดตามอาการแพ้', href: '#', icon: ChartPieIcon },
+  { name: 'พยากรณ์คุณภาพของอากาศ', href: '#', icon: CursorArrowRaysIcon },
+]
+const callsToAction = [
+  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
+  { name: 'Contact sales', href: '#', icon: PhoneIcon },
+]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 export default function Navbar(children) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
       {/* <!-- component --> */}
@@ -112,60 +137,94 @@ export default function Navbar(children) {
       </nav>
       <div class="w-full h-10 bg-slate-300" aria-label="ตำแหน่งที่บันทึกไว้" role="region">
       </div>
-      <header class="bg-white mb-5">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <div class="hidden lg:flex lg:gap-x-12">
+      <header className="bg-white">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div className="flex lg:flex-1">
           </div>
-          <div class="hidden lg:flex lg:gap-x-12">
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">วันนี้</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">รายชั่วโมง</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">10 วัน</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">รายเดือน</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">สุดสัปดาห์</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">เรดาร์</a>
-            <div class="relative">
-              <button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" aria-expanded="false">
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <Popover.Group className="hidden lg:flex lg:gap-x-12">
+            
+
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              วันนี้
+            </a>
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              รายชั่วโมง
+            </a>
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              10 วัน
+            </a>
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              รายเดือน
+            </a>
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              สุดสัปดาห์
+            </a>
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              เรดาร์
+            </a>
+            <Popover className="relative">
+              <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                 พยากรณ์เพิ่มเติม
-                <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                </svg>
+                <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+              </Popover.Button>
 
-              </button>
-
-              <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div class="p-2">
-                  <div class="group relative flex items-center gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50">
-                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 00-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                      </svg>
-
-                    </div>
-                    <div class="flex-auto">
-                      <a href="#" class="block font-semibold text-gray-900">
-                        ตัวติดตามอาการแพ้
-                        <span class="absolute inset-4"></span>
-                      </a>
-                    </div>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="p-4">
+                    {products.map((item) => (
+                      <div
+                        key={item.name}
+                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      >
+                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                        </div>
+                        <div className="flex-auto">
+                          <a href={item.href} className="block font-semibold text-gray-900">
+                            {item.name}
+                            <span className="absolute inset-0" />
+                          </a>
+                          <p className="mt-1 text-gray-600">{item.description}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div class="group relative flex items-center gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50">
-                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
-                      </svg>
-                    </div>
-                    <div class="flex-auto">
-                      <a href="#" class="block font-semibold text-gray-900">
-                        พยากรณ์คุณภาพของอากาศ
-                        <span class="absolute inset-0"></span>
+                  <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                    {callsToAction.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                      >
+                        <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                        {item.name}
                       </a>
-                    </div>
+                    ))}
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hidden lg:flex lg:gap-x-12">
+                </Popover.Panel>
+              </Transition>
+            </Popover>
+          </Popover.Group>
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+
           </div>
         </nav>
       </header>

@@ -4,6 +4,8 @@ import TempBox from '@/components/temp_box'
 import DateWeather from '@/components/DateWeather'
 import DetailDateweather from '@/components/DetailDateweather'
 import Navbar from '@/components/navbar'
+import Example from '@/components/example'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +19,7 @@ export default function Home() {
     </DateWeather>
     <DetailDateweather>
     </DetailDateweather>
+    {/* <Example></Example> */}
     </>
   )
 }
