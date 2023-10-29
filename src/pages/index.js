@@ -22,16 +22,18 @@ export default function Home() {
   }, [aosInitialized]);
 
   return (
-    <div className='grid grid-cols-5'>
-      <div className='col-span-3 col-start-2'>
-        <div className='grid grid-cols-6 pt-10'>
-          <div className='col-span-4 flex flex-col items-center w-100'>
-            <TempBox> </TempBox>
-            <DateWeather> </DateWeather>
-            <Advert/>
-          </div>
-          <div className='col-span-2 flex flex-col items-center w-100'>
-            <Recommend/>
+    <>
+      <div className='grid grid-cols-5'>
+        <div className='col-span-3 col-start-2'>
+          <div className='grid grid-cols-6 pt-10'>
+            <div className='col-span-4 flex flex-col items-center w-100'>
+              <TempBox> </TempBox>
+              <DateWeather> </DateWeather>
+              <Advert />
+            </div>
+            <div className='col-span-2 flex flex-col items-center w-100'>
+              <Recommend />
+            </div>
           </div>
         </div>
       </div>

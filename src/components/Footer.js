@@ -65,7 +65,6 @@ export default function Footer({ Children }) {
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-6 border-blueGray-300" />
                     </div>
                 </footer>
             </div>
