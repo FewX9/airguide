@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import TempBox from '@/components/temp_box';
 import DateWeather from '@/components/DateWeather';
 import Recommend from '@/components/Recommend';
+import Footer from '@/components/Footer';
 import Advert from "@/components/Advert";
 
 export default function Home() {
@@ -34,6 +35,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+      <Footer> </Footer>
+    </>
   )
 }
