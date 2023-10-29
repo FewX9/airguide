@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 import TempBox from '@/components/temp_box';
 import DateWeather from '@/components/DateWeather';
 import Recommend from '@/components/Recommend';
@@ -26,10 +27,10 @@ export default function Home() {
           <div className='col-span-4 flex flex-col items-center w-100'>
             <TempBox> </TempBox>
             <DateWeather> </DateWeather>
-            <Advert> </Advert>
+            <Advert/>
           </div>
           <div className='col-span-2 flex flex-col items-center w-100'>
-            <Recommend />
+            <Recommend/>
           </div>
         </div>
       </div>
