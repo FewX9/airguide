@@ -1,10 +1,14 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
 export default function Advert({ children }) {
     return (
         <>
             <div className="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col justify-between items-center">
                     <h1 className="text-2xl">ผู้สนับสนุน</h1>
-                    <div className="snap-x">
+                    <div className="snap-x flex">
+                        
                         <div className="relative py-3 sm:max-w-xl sm:mx-auto w-96 rounded-2xl snap-center" id="widget">
                             <img src="https://images.unsplash.com/photo-1608788524926-41b5181b89a2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=3150&amp;q=80"
                                 className="rounded-2xl" />
@@ -34,6 +38,7 @@ export default function Advert({ children }) {
                                 </div>
                             </div>
                         </div>
+
                         <div className="relative py-3 sm:max-w-xl sm:mx-auto w-96 rounded-2xl snap-center" id="widget">
                             <img src="https://images.unsplash.com/photo-1608788524926-41b5181b89a2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=3150&amp;q=80"
                                 className="rounded-2xl" />

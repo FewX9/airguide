@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import TempBox from '@/components/temp_box';
 import DateWeather from '@/components/DateWeather';
 import Recommend from '@/components/Recommend';
+import Advert from "@/components/Advert";
 
 export default function Home() {
   const [aosInitialized, setAOSInitialized] = useState(false);
@@ -25,6 +26,7 @@ export default function Home() {
           <div className='col-span-4 flex flex-col items-center w-100'>
             <TempBox> </TempBox>
             <DateWeather> </DateWeather>
+            <Advert> </Advert>
           </div>
           <div className='col-span-2 flex flex-col items-center w-100'>
             <Recommend />
