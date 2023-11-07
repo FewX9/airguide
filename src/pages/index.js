@@ -7,6 +7,7 @@ import DateWeather from '@/components/DateWeather';
 import Recommend from '@/components/Recommend';
 import Footer from '@/components/Footer';
 import Advert from "@/components/Advert";
+import Navbar from "@/components/navbar";
 
 export default function Home() {
   const [aosInitialized, setAOSInitialized] = useState(false);
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar/>
       <div className='grid grid-cols-5'>
         <div className='col-span-3 col-start-2'>
           <div className='grid grid-cols-6 pt-10'>
