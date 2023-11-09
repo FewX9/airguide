@@ -8,6 +8,7 @@ import Recommend from '@/components/Recommend';
 import Footer from '@/components/Footer';
 import Advert from "@/components/Advert";
 import Navbar from "@/components/navbar";
+import DetailDateweather from "@/components/DetailDateweather";
 
 export default function Home() {
   const [aosInitialized, setAOSInitialized] = useState(false);
@@ -29,8 +30,9 @@ export default function Home() {
         <div className='col-span-3 col-start-2'>
           <div className='grid grid-cols-6 pt-10'>
             <div className='col-span-4 flex flex-col items-center w-100'>
-              <TempBox> </TempBox>
-              <DateWeather> </DateWeather>
+              <TempBox/>
+              <DetailDateweather/>
+              <DateWeather/>
               <Advert />
             </div>
             <div className='col-span-2 flex flex-col items-center w-100'>

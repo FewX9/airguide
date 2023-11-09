@@ -1,43 +1,81 @@
-export default function DetailDateweather({ children }) {
-    return (
-        <>
-            <div className="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40">
-                <div className="flex justify-between items-center">
-                    <div className="weather-container">
-                        <h1 className="text-2xl">สภาพอากาศวันนี้</h1>
-                        <div className="temperature mb-8">
-                            <span className="text-5xl ">34°</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-12 gap-y-5">
-                            <div className="high-low">
-                                <span className="icon">🌡</span> สูง / ต่ำ --/26°
-                            </div>
-                            <div className="wind">
-                                <span className="icon">🌬</span> ลม 0 กม./ชม.
-                            </div>
-                            <div className="humidity">
-                                <span className="icon">💧</span> ความชื้น 81%
-                            </div>
-                            <div className="dew-point">
-                                <span className="icon">💧ํ</span> จุดน้ำค้าง 25°
-                            </div>
-                            <div className="pressure">
-                                <span className="icon">🌡</span> ความดัน 1012.2 มิลลิบาร์
-                            </div>
-                            <div className="uv-index">
-                                <span className="icon">☀️</span> ดัชนี UV 0 ของ 11
-                            </div>
-                            <div className="visibility">
-                                <span className="icon">👁</span> ทัศนวิสัย 8.05 กม.
-                            </div>
-                            <div className="moon-phase">
-                                <span className="icon">🌙</span> ข้างขึ้นข้างแรม จันทร์เพ็ญ
-                            </div>
-                        </div>
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-                    </div>
-                </div>
+export default function DetailDateweather({ children }) {
+  const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=15.0&lon=100.0&lang=th&appid=ae1d0e8f7ca4f5a7ed4e67ff6a57f542&units=metric`
+        );
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    };
+
+    fetchWeatherData();
+  }, []);
+
+  return (
+    <>
+      <div className="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40">
+        <div className="flex justify-between items-center">
+          <div className="weather-container">
+            <h1 className="text-2xl">สภาพอากาศวันนี้</h1>
+            <div className="temperature mb-8">
+              <span className="text-5xl">
+                {weatherData ? `${Math.round(weatherData.main.temp)}°` : "--"}
+              </span>
             </div>
-        </>
-    )
+            <div className="grid grid-cols-2 gap-x-12 gap-y-5">
+              <div className="high-low">
+                <span className="icon">🌡</span> สูง / ต่ำ{" "}
+                {weatherData
+                  ? `${Math.round(weatherData.main.temp_max)}°/${Math.round(
+                      weatherData.main.temp_min
+                    )}°`
+                  : "--/--"}
+              </div>
+              <div className="wind">
+                <span className="icon">🌬</span> ลม{" "}
+                {weatherData
+                  ? `${Math.round(weatherData.wind.speed)} กม./ชม.`
+                  : "--"}
+              </div>
+              <div className="humidity">
+                <span className="icon">💧</span> ความชื้น{" "}
+                {weatherData ? `${weatherData.main.humidity}%` : "--"}
+              </div>
+              <div className="dew-point">
+                <span className="icon">💧ํ</span> จุดน้ำค้าง{" "}
+                {weatherData
+                  ? `${Math.round(weatherData.main.temp_kf)}°`
+                  : "--"}
+              </div>
+              <div className="pressure">
+                <span className="icon">🌡</span> ความดัน{" "}
+                {weatherData
+                  ? `${Math.round(weatherData.main.pressure)} มิลลิบาร์`
+                  : "--"}
+              </div>
+              <div className="uv-index">
+                <span className="icon">☀️</span> ดัชนี UV{" "}
+                {weatherData ? `0 ของ 11` : "--"}
+              </div>
+              <div className="visibility">
+                <span className="icon">👁</span> ทัศนวิสัย{" "}
+                {weatherData
+                  ? `${Math.round(weatherData.visibility) / 1000} กม.`
+                  : "--"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

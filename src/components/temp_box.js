@@ -33,34 +33,29 @@ export default function TempBox({ children }) {
     fetchHourlyData();
   }, []);
 
-  if (!weatherData || !hourlyData) {
-    return <div>Loading...</div>;
-  }
-
   const currentDate = new Date().toISOString().slice(0, 10);
-
-  const displayHours = {
-    morning: [7, 6, 8, 9, 10, 11],
-    noon: [12, 13],
-    afternoon: [14, 15, 16],
-    evening: [18, 19, 20],
-    overnight: [22, 23, 0, 1],
-  };
 
   return (
     <div
-      className="w-full max-w-screen-sm bg-white p-10 rounded-xl ring-8 ring-white ring-opacity-40"
+      className="w-full max-w-screen-sm bg-white p-10 rounded-xl ring-8 ring-white ring-opacity-40 overflow-x-auto"
       data-aos="fade-right"
     >
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <span className="text-6xl font-bold">
+        <h1 className="text-2xl">สภาพอากาศวันนี้</h1>
+          <span className="lg:text-6xl font-bold md:text-4xl md:font-semibold sm:text-xl">
             {weatherData
               ? `${Math.round(weatherData.main.temp)}°C`
               : "Loading..."}
           </span>
-          <span className="font-semibold mt-1 text-gray-500">
-            {weatherData ? weatherData.name : "Loading..."}
+          <span>อุณหภูมิสูงสุด: {weatherData
+              ? `${Math.round(weatherData.main.temp_max)}°C`
+              : "Loading..."} {""}
+              อุณหภูมิต่ำสุด: {weatherData
+                ? `${Math.round(weatherData.main.temp_min)}°C`
+                : "Loading..."}</span>
+          <span className="mt-1 text-gray-500 text-lg">
+            ประเทศ{weatherData ? weatherData.name : "Loading..."}
           </span>
         </div>
         <svg
@@ -74,7 +69,7 @@ export default function TempBox({ children }) {
           <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79zM1 10.5h3v2H1zM11 .55h2V3.5h-2zm8.04 2.495l1.408 1.407-1.79 1.79-1.407-1.408zm-1.8 15.115l1.79 1.8 1.41-1.41-1.8-1.79zM20 10.5h3v2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm-1 4h2v2.95h-2zm-7.45-.96l1.41 1.41 1.79-1.8-1.41-1.41z" />
         </svg>
       </div>
-      <div className="flex justify-between mt-12">
+      <div className="flex justify-between mt-12 overflow-x-auto w-full divide-x">
         {hourlyData.list && hourlyData.list.length > 0 ? (
           hourlyData.list.map((hour, index) => {
             const time = new Date(hour.dt_txt);
@@ -82,24 +77,25 @@ export default function TempBox({ children }) {
             let timeSlot = "";
 
             if (dataDate === currentDate) {
-              if (displayHours.morning.includes(time.getHours())) {
-                timeSlot = "Morning";
-              } else if (displayHours.noon.includes(time.getHours())) {
-                timeSlot = "Noon";
-              } else if (displayHours.afternoon.includes(time.getHours())) {
-                timeSlot = "Afternoon";
-              } else if (displayHours.evening.includes(time.getHours())) {
-                timeSlot = "Evening";
-              } else if (displayHours.overnight.includes(time.getHours())) {
-                timeSlot = "Overnight";
+              if (time.getHours() >= 6 && time.getHours() <= 12) {
+                timeSlot = "เช้า";
+              } else if (time.getHours() >= 13 && time.getHours() <= 18) {
+                timeSlot = "บ่าย";
+              } else if (time.getHours() >= 19 || time.getHours() === 0) {
+                timeSlot = "ค่ำ";
+              } else if (time.getHours() >= 1 && time.getHours() <= 5) {
+                timeSlot = "ข้ามคืน";
               }
+
               if (timeSlot) {
                 return (
-                  <div key={index} className="flex flex-col items-center">
+                  <div key={index} className="flex flex-col text-center items-center p-4 w-full">
                     <span className="font-semibold text-lg">
                       {Math.round(hour.main.temp)}°C
                     </span>
-                    <span className="font-semibold mt-1 text-sm">{timeSlot}</span>
+                    <span className="mt-1 text-sm">
+                      {time.getHours()}:00 น
+                    </span>
                   </div>
                 );
               }
