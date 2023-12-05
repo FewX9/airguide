@@ -7,6 +7,9 @@ import DateWeather from '@/components/DateWeather';
 import Recommend from '@/components/Recommend';
 import Footer from '@/components/Footer';
 import Advert from "@/components/Advert";
+import Navbar from "@/components/navbar";
+import Record from "@/components/Record";
+import DetailDateweather from "@/components/DetailDateweather";
 
 export default function Home() {
   const [aosInitialized, setAOSInitialized] = useState(false);
@@ -14,7 +17,10 @@ export default function Home() {
   useEffect(() => {
     if (!aosInitialized) {
       const timeoutId = setTimeout(() => {
-        AOS.init({});
+        AOS.init({
+          startEvent: 'DOMContentLoaded',
+          once: true,
+        });
         setAOSInitialized(true);
       }, 500);
       return () => clearTimeout(timeoutId);
@@ -23,16 +29,19 @@ export default function Home() {
 
   return (
     <>
+    <Navbar/>
       <div className='grid grid-cols-5'>
         <div className='col-span-3 col-start-2'>
           <div className='grid grid-cols-6 pt-10'>
             <div className='col-span-4 flex flex-col items-center w-100'>
               <TempBox> </TempBox>
               <DateWeather> </DateWeather>
+              <DetailDateweather/>
               <Advert />
             </div>
             <div className='col-span-2 flex flex-col items-center w-100'>
               <Recommend />
+              <Record />
             </div>
           </div>
         </div>
