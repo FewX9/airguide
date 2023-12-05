@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function DetailDateweather({ children }) {
   const [weatherData, setWeatherData] = useState(null);
@@ -22,7 +21,7 @@ export default function DetailDateweather({ children }) {
 
   return (
     <>
-      <div className="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40">
+      <div className="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40" data-aos="fade-right" data-aos-delay="300">
         <div className="flex justify-between items-center">
           <div className="weather-container">
             <h1 className="text-2xl">สภาพอากาศวันนี้</h1>

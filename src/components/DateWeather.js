@@ -1,6 +1,6 @@
 export default function DateWeather({ children }) {
     return (
-        <div class="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40" data-aos="fade-right" data-aos-delay="300">
+        <div class="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40">
             <div class="flex justify-between items-center">
                 <span class="font-semibold text-lg w-1/4">Fri, 22 Jan</span>
                 <div class="flex items-center justify-end w-1/4 pr-10">
