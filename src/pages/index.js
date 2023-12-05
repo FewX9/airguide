@@ -8,7 +8,7 @@ import Recommend from '@/components/Recommend';
 import Footer from '@/components/Footer';
 import Advert from "@/components/Advert";
 import Navbar from "@/components/navbar";
-import DetailDateweather from "@/components/DetailDateweather";
+import Record from "@/components/Record";
 
 export default function Home() {
   const [aosInitialized, setAOSInitialized] = useState(false);
@@ -16,7 +16,10 @@ export default function Home() {
   useEffect(() => {
     if (!aosInitialized) {
       const timeoutId = setTimeout(() => {
-        AOS.init({});
+        AOS.init({
+          startEvent: 'DOMContentLoaded',
+          once: true,
+        });
         setAOSInitialized(true);
       }, 500);
       return () => clearTimeout(timeoutId);
@@ -37,6 +40,7 @@ export default function Home() {
             </div>
             <div className='col-span-2 flex flex-col items-center w-100'>
               <Recommend />
+              <Record />
             </div>
           </div>
         </div>
